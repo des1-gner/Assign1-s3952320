@@ -1,0 +1,9 @@
+{
+    "dataStructure": "array",
+    "rowNum": 70,
+    "colNum": 100,
+    "entrances": [[40,-1],[1,100]],
+    "exits": [[-1,16]],
+    "generator": "recur",
+    "visualise": true
+}

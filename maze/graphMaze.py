@@ -13,7 +13,7 @@ from maze.maze import Maze
 from maze.util import Coordinates
 from maze.graph import Graph
 from maze.adjListGraph import AdjListGraph
-from maze.adjMatGraph import AdjMatGraph
+from dataGen.timingClasses.adjMatGraph import AdjMatGraph
 
 
 

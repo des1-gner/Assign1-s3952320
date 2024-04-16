@@ -1,2 +1,0 @@
-maze is rectangular. 
-Maybe some print() statements in your neighbours code, just to verify the list is being filled?

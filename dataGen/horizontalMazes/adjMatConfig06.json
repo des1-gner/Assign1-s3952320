@@ -1,9 +1,0 @@
-{
-    "dataStructure": "adjmat",
-    "rowNum": 5,
-    "colNum": 400,
-    "entrances": [[0,-1],[-1,1]],
-    "exits": [[3,400],[5,4]],
-    "generator": "recur",
-    "visualise": true
-}

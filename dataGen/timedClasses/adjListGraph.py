@@ -13,6 +13,7 @@ from maze.util import Coordinates
 from maze.graph import Graph
 
 import timeit
+
 import atexit
 
 class AdjListGraph:

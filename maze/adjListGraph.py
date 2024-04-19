@@ -14,7 +14,12 @@ from maze.graph import Graph
 
 class AdjListGraph:
 
+    """
+    Represents an undirected graph. Please complete the implementations of each method. See the documentation for the parent class
+    to see what each of the overriden methods are meant to do.
+    """
 
+    #
 
     def __init__(self):
 
@@ -22,6 +27,8 @@ class AdjListGraph:
 
         # Dictionary to store adjacency list, key is a vertex and value is the list of neighbours.
         self.adjList = {}
+
+    #
 
     def addVertex(self, label: Coordinates):
         
@@ -32,6 +39,8 @@ class AdjListGraph:
             
             self.adjList[label] = []
 
+    #
+
     def addVertices(self, vertLabels: List[Coordinates]):
         
         ### Implement me! ###
@@ -40,6 +49,8 @@ class AdjListGraph:
         for label in vertLabels:
             
             self.addVertex(label)
+
+    #
 
     def addEdge(self, vert1: Coordinates, vert2: Coordinates, addWall: bool = False) -> bool:
         
@@ -53,7 +64,11 @@ class AdjListGraph:
             
             return True
         
+            # remember to return booleans
+        
         return False
+
+    #
 
     def updateWall(self, vert1: Coordinates, vert2: Coordinates, wallStatus: bool) -> bool:
         
@@ -74,10 +89,14 @@ class AdjListGraph:
                 if vertex == vert1:
         
                     self.adjList[vert2][i] = (vertex, wallStatus)
-        
+
+            # remember to return booleans
+
             return True
         
         return False
+
+    #
 
     def removeEdge(self, vert1: Coordinates, vert2: Coordinates) -> bool:
         
@@ -88,17 +107,25 @@ class AdjListGraph:
         
             self.adjList[vert1] = [neighbour for neighbour in self.adjList[vert1] if neighbour[0] != vert2]
             self.adjList[vert2] = [neighbour for neighbour in self.adjList[vert2] if neighbour[0] != vert1]
+
+            # remember to return booleans
         
             return True
         
         return False
+
+    #
 
     def hasVertex(self, label: Coordinates) -> bool:
         
         ### Implement me! ###
 
         # Checks if a vertex exists in the graph
+
+        # remember to return booleans
         return label in self.adjList
+
+    #
 
     def hasEdge(self, vert1: Coordinates, vert2: Coordinates) -> bool:
         
@@ -106,10 +133,14 @@ class AdjListGraph:
 
         # Checks if an edge exists between vert1 and vert2
         if vert1 in self.adjList:
+
+            # remember to return booleans
         
             return any(neighbour[0] == vert2 for neighbour in self.adjList[vert1])
         
         return False
+
+    #
 
     def getWallStatus(self, vert1: Coordinates, vert2: Coordinates) -> bool:
         
@@ -121,10 +152,14 @@ class AdjListGraph:
             for neighbour, isWall in self.adjList[vert1]:
         
                 if neighbour == vert2:
+
+                    # remember to return booleans
         
                     return isWall
         
         return False
+
+    #
 
     def neighbours(self, label: Coordinates) -> List[Coordinates]:
         
@@ -132,6 +167,8 @@ class AdjListGraph:
         
         # Returns a list of neighbours for the given vertex
         if label in self.adjList:
+
+            # remember to return list of coordinates
         
             return [neighbour[0] for neighbour in self.adjList[label]]
         

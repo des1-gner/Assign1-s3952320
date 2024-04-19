@@ -15,10 +15,12 @@ from maze.graph import Graph
 class AdjMatGraph:
     
     """
-    Represents an undirected graph.  Please complete the implementations of each method.  See the documentation for the parent class
+    Represents an undirected graph. Please complete the implementations of each method. See the documentation for the parent class
     to see what each of the overriden methods are meant to do.
     """
-    
+
+    # Initialises an empty Graph
+
     def __init__(self):
         
         ### Implement me! ###
@@ -26,6 +28,8 @@ class AdjMatGraph:
         self.adjMatrix = [] # List to store Edges of the Adjacency Matrix
         self.vertices = [] # List to store Vertices of the Adjacency Matrix
         self.vertex_indices = {} # Dictionary to store Vertex-Index Mappings
+
+    # Adds a Vertex with the given label to the Graph
 
     def addVertex(self, label:Coordinates):
         
@@ -36,13 +40,15 @@ class AdjMatGraph:
             self.vertices.append(label)
             self.vertex_indices[label] = len(self.vertices) - 1
 
-            # Expand the adjacency matrix for the new vertex
+            # Expand the Adjacency Matrix for the new Vertex
         
             for row in self.adjMatrix:
         
                 row.append(0)
         
             self.adjMatrix.append([0] * len(self.vertices))
+
+    # Adds multiple Vertices with the given labels to the Graph
 
     def addVertices(self, vertLabels:List[Coordinates]):
 
@@ -52,7 +58,9 @@ class AdjMatGraph:
         
             self.addVertex(label)
 
-    def addEdge(self, vert1, vert2, addWall=False):
+    # Adds an Edge between the Vertices 
+
+    def addEdge(self, vert1:Coordinates, vert2:Coordinates, addWall:bool=False)->bool:
 
         ### Implement me! ###
 
@@ -61,18 +69,24 @@ class AdjMatGraph:
             index1 = self.vertex_indices[vert1]
             index2 = self.vertex_indices[vert2]
 
-            # Use 1 for edge, 2 to represent wall
+            # 1 represents an Edge, 2 represents a Wall
         
             self.adjMatrix[index1][index2] = 2 if addWall else 1
             self.adjMatrix[index2][index1] = 2 if addWall else 1
 
             # remember to return booleans
+
+            # True if Edge is added successfully e.g. addWall() is True
         
             return True
         
+        # Else False
+        
         return False
+    
+    # Updates the Wall status of the Edge between two coordinates
 
-    def updateWall(self, vert1, vert2, wallStatus):
+    def updateWall(self, vert1:Coordinates, vert2:Coordinates, wallStatus:bool)->bool:
         
         ### Implement me! ###
 
@@ -81,7 +95,11 @@ class AdjMatGraph:
             index1 = self.vertex_indices[vert1]
             index2 = self.vertex_indices[vert2]
 
-            if self.adjMatrix[index1][index2] != 0:  # Edge exists
+            # Edge exists
+
+            if self.adjMatrix[index1][index2] != 0: 
+
+                # 1 represents an Edge, 2 represents a Wall
             
                 self.adjMatrix[index1][index2] = 2 if wallStatus else 1
                 self.adjMatrix[index2][index1] = 2 if wallStatus else 1
@@ -91,8 +109,10 @@ class AdjMatGraph:
                 return True
         
         return False
+    
+    # Removes the Edge between coordinates
 
-    def removeEdge(self, vert1, vert2):
+    def removeEdge(self, vert1:Coordinates, vert2:Coordinates)->bool:
         
         ### Implement me! ###
 
@@ -101,24 +121,36 @@ class AdjMatGraph:
             index1 = self.vertex_indices[vert1]
             index2 = self.vertex_indices[vert2]
 
-            if self.adjMatrix[index1][index2] != 0:  # Edge exists
+            # Edge exists
+
+            if self.adjMatrix[index1][index2] != 0:  
         
                 self.adjMatrix[index1][index2] = 0
                 self.adjMatrix[index2][index1] = 0
 
                 # remember to return booleans
+
+                # True if Edge is removed
         
                 return True
+            
+        # Else False
         
         return False
+    
+    # Checks if the Vertex label exists in the Graph
 
-    def hasVertex(self, label):
+    def hasVertex(self, label:Coordinates)->bool:
         
         ### Implement me! ###
 
-        return label in self.vertex_indices
+        # Returns True if Vertex exists, else False
 
-    def hasEdge(self, vert1, vert2):
+        return label in self.vertex_indices
+    
+    # Checks if an Edge exists between two Vertices
+
+    def hasEdge(self, vert1:Coordinates, vert2:Coordinates)->bool:
         
         ### Implement me! ###
 
@@ -128,12 +160,18 @@ class AdjMatGraph:
             index2 = self.vertex_indices[vert2]
 
             # remember to return booleans
+
+            # Returns True if Edge exists
         
             return self.adjMatrix[index1][index2] != 0
         
+        # Else False
+        
         return False
+    
+    # Checks if the Edge between coordinates is a Wall
 
-    def getWallStatus(self, vert1, vert2):
+    def getWallStatus(self, vert1:Coordinates, vert2:Coordinates)->bool:
         
         ### Implement me! ###
 
@@ -143,12 +181,18 @@ class AdjMatGraph:
             index2 = self.vertex_indices[vert2]
 
             # remember to return booleans
+
+            # Returns True if the Edge is a Wall
         
             return self.adjMatrix[index1][index2] == 2
         
+        # Else False
+        
         return False
+    
+    # Returns a List of coordinates representing the neighbouring Vertices of the label
 
-    def neighbours(self, label):
+    def neighbours(self, label:Coordinates)->List[Coordinates]:
         
         ### Implement me! ###
 
